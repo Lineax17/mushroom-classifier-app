@@ -35,6 +35,8 @@ ui <- fluidPage(
       
       checkboxInput(inputId="bruises", label="bruises?", value = FALSE),
       
+      # test zum pushen 
+      
     
     ),
 
