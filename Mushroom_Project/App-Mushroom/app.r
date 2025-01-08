@@ -18,27 +18,24 @@ ui <- fluidPage(
       h4("Pilz Merkmale auswählen:",align="left"),
       hr(style="height: 1px; background: black"),
 
-      selectInput(inputId="cap-shape",label="cap-shape:", 
-                  choices = list("bell" = 1, "conical" = 2,
-                                 "convex" = 3, "flat" = 4, 
-                                 "knobbed" = 5, "sunken" = 6), selected = 1 
+      selectInput(inputId="cap_shape", label="Cap Shape:", 
+                  choices = c("Bell" = "b", "Conical" = "c", "Convex" = "x", 
+                              "Flat" = "f", "Knobbed" = "k", "Sunken" = "s"), selected = "b"
+      ),
+      selectInput(inputId="cap_surface", label="Cap Surface:", 
+                  choices = c("Fibrous" = "f", "Grooves" = "g", "Scaly" = "y", 
+                              "Smooth" = "s"), selected = "g"
+      ),
+      selectInput(inputId="cap_color", label="Cap Color:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
       ),
       
-      selectInput(inputId="cap-surface",label="cap-surface:", 
-                  choices = list("fibrous" = 1, "grooves" = 2,
-                                 "scaly" = 3, "smooth" = 4), selected = 1 
-      ),
+      checkboxInput(inputId="bruises", label="bruises?", value = FALSE),
       
-      selectInput(inputId="cap-color",label="cap-color:", 
-                  choices = list("brown" = 1, "buff" = 2,
-                                 "cinnamon" = 3, "gray" = 4,
-                                 "green" = 3, "pink" = 4,
-                                 "purple" = 3, "red" = 4,
-                                 "white" = 3, "yellow" = 4), selected = 1 
-      ),
-      
-     
-     
+    
     ),
 
     # der Hauptbereich der Nutzeroberfläche für die Ausgabe der Ergebnisse
