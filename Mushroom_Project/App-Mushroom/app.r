@@ -18,14 +18,19 @@ ui <- fluidPage(
       h4("Pilz Merkmale auswählen:",align="left"),
       hr(style="height: 1px; background: black"),
 
+      # cap-shape
       selectInput(inputId="cap_shape", label="Cap Shape:", 
                   choices = c("Bell" = "b", "Conical" = "c", "Convex" = "x", 
                               "Flat" = "f", "Knobbed" = "k", "Sunken" = "s"), selected = "b"
       ),
+      
+      # cap-surface
       selectInput(inputId="cap_surface", label="Cap Surface:", 
                   choices = c("Fibrous" = "f", "Grooves" = "g", "Scaly" = "y", 
                               "Smooth" = "s"), selected = "g"
       ),
+      
+      # cap_color
       selectInput(inputId="cap_color", label="Cap Color:", 
                   choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
                               "Gray" = "g", "Green" = "r", "Pink" = "p", 
@@ -33,11 +38,153 @@ ui <- fluidPage(
                               "Yellow" = "y"), selected = "n"
       ),
       
+      # bruises
       checkboxInput(inputId="bruises", label="bruises?", value = FALSE),
       
-      # test zum pushen 
+      # odor
+      selectInput(inputId="odor", label="Odor:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
       
-    
+      # gill-attachment
+      selectInput(inputId="gill-attachment", label="Gill Attachment:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # gill-spacing
+      selectInput(inputId="gill-spacing", label="Gill Spacing:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # gill-size
+      selectInput(inputId="gill-size", label="Gill Size:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # gill-color
+      selectInput(inputId="gill-color", label="Gill Color:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # stalk-shape
+      selectInput(inputId="stalk-shape", label="Stalk Shape:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # stalk-root
+      selectInput(inputId="stalk-root", label="Stalk Root:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # stalk-surface-above-ring
+      selectInput(inputId="stalk-surface-above-ring", label="Stalk Surface Above Ring:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # stalk-surface-below-ring
+      selectInput(inputId="stalk-surface-below-ring", label="Stalk Surface Below Ring:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # stalk-color-above-ring
+      selectInput(inputId="stalk-color-above-ring", label="Stalk Color Above Ring:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # stalk-color-below-ring
+      selectInput(inputId="stalk-color-below-ring", label="Stalk Color Below Ring:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # veil-type
+      selectInput(inputId="veil-type", label="Veil Type:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # veil-color
+      selectInput(inputId="veil-color", label="Veil Color:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # ring-number
+      selectInput(inputId="ring-number", label="Ring Number:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # ring-type
+      selectInput(inputId="ring-type", label="Ring Type:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # spore-print-color
+      selectInput(inputId="spore-print-color", label="Spore Print Color:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # population
+      selectInput(inputId="population", label="Population:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
+      # habitat
+      selectInput(inputId="habitat", label="Habitat:", 
+                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
+                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
+                              "Purple" = "u", "Red" = "e", "White" = "w", 
+                              "Yellow" = "y"), selected = "n"
+      ),
+      
     ),
 
     # der Hauptbereich der Nutzeroberfläche für die Ausgabe der Ergebnisse
