@@ -43,146 +43,104 @@ ui <- fluidPage(
       
       # odor
       selectInput(inputId="odor", label="Odor:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("almond"=a,"anise"=l,"creosote"=c,"fishy"=y,"foul"=f,
+                              "musty"=m,"none"=n,"pungent"=p,"spicy"=s), selected = "n"
       ),
       
       # gill-attachment
       selectInput(inputId="gill-attachment", label="Gill Attachment:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("attached"=a,"descending"=d,"free"=f,"notched"=n), selected = "n"
       ),
       
       # gill-spacing
       selectInput(inputId="gill-spacing", label="Gill Spacing:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("close"=c,"crowded"=w,"distant"=d), selected = "n"
       ),
       
       # gill-size
       selectInput(inputId="gill-size", label="Gill Size:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("broad"=b,"narrow"=n), selected = "n"
       ),
       
       # gill-color
       selectInput(inputId="gill-color", label="Gill Color:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("black"=k,"brown"=n,"buff"=b,"chocolate"=h,"gray"=g,
+                              "green"=r,"orange"=o,"pink"=p,"purple"=u,"red"=e,
+                              "white"=w,"yellow"=y), selected = "n"
       ),
       
       # stalk-shape
       selectInput(inputId="stalk-shape", label="Stalk Shape:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("enlarging"=e,"tapering"=t), selected = "n"
       ),
       
       # stalk-root
       selectInput(inputId="stalk-root", label="Stalk Root:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("bulbous"=b,"club"=c,"cup"=u,"equal"=e,
+                              "rhizomorphs"=z,"rooted"=r,"missing"="?"), selected = "n"
       ),
       
       # stalk-surface-above-ring
       selectInput(inputId="stalk-surface-above-ring", label="Stalk Surface Above Ring:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("fibrous"=f,"scaly"=y,"silky"=k,"smooth"=s), selected = "n"
       ),
       
       # stalk-surface-below-ring
       selectInput(inputId="stalk-surface-below-ring", label="Stalk Surface Below Ring:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("fibrous"=f,"scaly"=y,"silky"=k,"smooth"=s), selected = "n"
       ),
       
       # stalk-color-above-ring
       selectInput(inputId="stalk-color-above-ring", label="Stalk Color Above Ring:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("black"=k,"brown"=n,"buff"=b,"chocolate"=h,"gray"=g,
+                              "green"=r,"orange"=o,"pink"=p,"purple"=u,"red"=e,
+                              "white"=w,"yellow"=y), selected = "n"
       ),
       
       # stalk-color-below-ring
       selectInput(inputId="stalk-color-below-ring", label="Stalk Color Below Ring:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("black"=k,"brown"=n,"buff"=b,"chocolate"=h,"gray"=g,
+                              "green"=r,"orange"=o,"pink"=p,"purple"=u,"red"=e,
+                              "white"=w,"yellow"=y), selected = "n"
       ),
       
       # veil-type
       selectInput(inputId="veil-type", label="Veil Type:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("partial"=p,"universal"=u), selected = "n"
       ),
       
       # veil-color
       selectInput(inputId="veil-color", label="Veil Color:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("brown"=n,"orange"=o,"white"=w,"yellow"=y), selected = "n"
       ),
       
       # ring-number
       selectInput(inputId="ring-number", label="Ring Number:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("none"=n,"one"=o,"two"=t), selected = "n"
       ),
       
       # ring-type
       selectInput(inputId="ring-type", label="Ring Type:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("cobwebby"=c,"evanescent"=e,"flaring"=f,"large"=l,
+                              "none"=n,"pendant"=p,"sheathing"=s,"zone"=z), selected = "n"
       ),
       
       # spore-print-color
       selectInput(inputId="spore-print-color", label="Spore Print Color:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("black"=k,"brown"=n,"buff"=b,"chocolate"=h,"green"=r,
+                              "orange"=o,"purple"=u,"white"=w,"yellow"=y), selected = "n"
       ),
       
       # population
       selectInput(inputId="population", label="Population:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("abundant"=a,"clustered"=c,"numerous"=n,
+                              "scattered"=s,"several"=v,"solitary"=y), selected = "n"
       ),
       
       # habitat
       selectInput(inputId="habitat", label="Habitat:", 
-                  choices = c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c", 
-                              "Gray" = "g", "Green" = "r", "Pink" = "p", 
-                              "Purple" = "u", "Red" = "e", "White" = "w", 
-                              "Yellow" = "y"), selected = "n"
+                  choices = c("grasses"=g,"leaves"=l,"meadows"=m,"paths"=p,
+                              "urban"=u,"waste"=w,"woods"=d), selected = "n"
       ),
       
     ),
