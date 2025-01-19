@@ -19,6 +19,7 @@ Daten[] <- lapply(Daten, as.factor)
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(shinyWidgets)
 
 options(shiny.port = 8100)
 runApp("App-Mushroom")

@@ -3,6 +3,10 @@
 cap_shape_choices <- c("Bell" = "b", "Conical" = "c", "Convex" = "x",
                        "Flat" = "f", "Knobbed" = "k", "Sunken" = "s")
 
+choices_content <- lapply(names(cap_shape_choices), function(name) {
+  paste0('<img src="images/Cap_Shape_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
+})
+
 cap_surface_choices <- c("Fibrous" = "f", "Grooves" = "g", "Scaly" = "y",
                          "Smooth" = "s")
 
@@ -70,7 +74,7 @@ ui <- fluidPage(
       .sidebar {
         font-size: 12px;  /* Verkleinere die Schriftgröße */
       }
-      .selectize-input, .selectize-dropdown {
+      .selectize-input, .selectize-dropdown, .dropdown-menu, .bootstrap-select {
         font-size: 15px;  /* Verkleinere Schriftgröße in Dropdowns */
       }
       .form-group {
@@ -93,12 +97,15 @@ ui <- fluidPage(
       h4("Pilz Merkmale auswählen:", align = "left"),
       hr(style = "height: 1px; background: black"),
 
+
+
       fluidRow(
 
         # cap-shape
         column(6,
-               selectInput(inputId = "cap_shape", label = "Cap Shape:",
-                           choices = cap_shape_choices, selected = "b"
+               pickerInput(inputId = "cap_shape", label = "Cap Shape:",
+                 choices = cap_shape_choices, selected = "b",
+                 choicesOpt = list(content = unlist(choices_content))
                )),
 
         # cap-surface
