@@ -1,5 +1,9 @@
 
+cap_shape_choices <- c("Bell" = "b", "Conical" = "c", "Convex" = "x",
+                       "Flat" = "f", "Knobbed" = "k", "Sunken" = "s")
 
+cap_surface_choices <- c("Fibrous" = "f", "Grooves" = "g", "Scaly" = "y",
+                         "Smooth" = "s")
 ################
 # Im folgenden Abschnitt wird das User Interface (UI) definiert
 ui <- fluidPage(
@@ -19,14 +23,12 @@ ui <- fluidPage(
 
       # cap-shape
       selectInput(inputId="cap_shape", label="Cap Shape:",
-                  choices = c("Bell" = "b", "Conical" = "c", "Convex" = "x",
-                              "Flat" = "f", "Knobbed" = "k", "Sunken" = "s"), selected = "b"
+                  choices = cap_shape_choices, selected = "b"
       ),
 
       # cap-surface
       selectInput(inputId="cap_surface", label="Cap Surface:",
-                  choices = c("Fibrous" = "f", "Grooves" = "g", "Scaly" = "y",
-                              "Smooth" = "s"), selected = "g"
+                  choices = cap_surface_choices , selected = "g"
       ),
 
       # cap_color
@@ -148,8 +150,8 @@ ui <- fluidPage(
     mainPanel(
 
       # Ausgabe des Histogramms
-      plotOutput(outputId = "Verteilung"),
-
+      plotOutput(outputId = "BarPlot"),
+     # plotOutput(outputId = "BarPlot", height = 2 * 50)
       # Ausgabe der Prognose
       #textOutput("Prognose"),
 
@@ -161,11 +163,80 @@ ui <- fluidPage(
 
 
 server <- function(input, output) {
-      observe({
-            print(paste("Selected cap_shape:", input$cap_shape))
-            print(paste("Selected cap_surface:", input$cap_surface))
-      })
 
+  #facet diagram (single Values)
+  output$BarPlot <- renderPlot({
+
+    cap_shape_data  <- Daten %>%
+      filter(cap_shape == input$cap_shape) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Cap Shape:", names(cap_shape_choices[cap_shape_choices == input$cap_shape]))
+      )
+
+    cap_surface_data <- Daten %>%
+      filter(cap_surface == input$cap_surface) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Cap Surface:", names(cap_surface_choices[cap_surface_choices == input$cap_surface]))
+      )
+    
+    # Daten fürs Plotten. Für richtige Reihenfolge umdrehen, und dann die Kategorie as Faktor setzen
+    plot_data <- bind_rows(cap_shape_data, cap_surface_data)
+    plot_data <- plot_data[rev(seq_len(nrow(plot_data))), ]
+    plot_data$category <- factor(plot_data$category, levels = plot_data$category)
+
+
+    ggplot(plot_data, aes(x = category, y = poisonous_percent, fill = category)) +
+      geom_bar(stat = "identity", width = 0.2) +
+      coord_flip() +
+      scale_x_discrete(expand = c(0, 0)) +
+      scale_y_continuous(limits = c(0, 100), name = "Giftigkeitsprozentsatz") +  # Globale y-Achsenbeschriftung
+      labs(
+        title = "Giftigkeitsanalyse für Eigenschaften",
+      ) +
+      theme_minimal() +
+      theme(
+        axis.text.y = element_text(size = 10),      # Lesbare Kategorienamen
+        plot.title = element_text(hjust = 0.5),    # Zentriere den Titel
+        legend.position = "none"                   # Entferne die Legende
+      )
+  })
+  
+  # output$FacetPlot <- renderPlot({
+  #   tryCatch({
+  #     # Allow multiple selections
+  #     selected_shapes <- input$selected_shapes 
+  #     selected_colors <- input$selected_colors
+  #     
+  #     filtered_data <- Daten %>%
+  #       filter(
+  #         cap_shape %in% selected_shapes, 
+  #         cap_color %in% selected_colors
+  #       ) 
+  #     
+  #     if (nrow(filtered_data) == 0) {
+  #       return(NULL)  # Return NULL if no data
+  #     }
+  #     
+  #     # Calculate percentage of poisonous mushrooms
+  #     poisonous_prop <- sum(filtered_data$edible == "p") / nrow(filtered_data) * 100
+  #     
+  #     ggplot(data.frame(poisonous_prop = poisonous_prop), aes(x = poisonous_prop)) +
+  #       geom_bar(stat = "identity", fill = "red") +
+  #       xlim(0, 100) + 
+  #       labs(
+  #         x = "Percentage Poisonous",
+  #         y = "Frequency",
+  #         title = paste("Edibility for Selected Criteria")
+  #       ) +
+  #       theme_minimal()
+  #     
+  #   }, error = function(e) {
+  #     print(paste("Error encountered:", e))
+  #     return(NULL)
+  #   })
+  # })
 
 }
 
