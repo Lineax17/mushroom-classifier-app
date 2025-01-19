@@ -10,6 +10,8 @@ cap_color_choices <- c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c",
                        "Purple" = "u", "Red" = "e", "White" = "w",
                        "Yellow" = "y")
 
+bruises_choices <- c("Bruises" = "t", "No Bruises" = "f")
+
 odor_choices <- c("almond"="a","anise"="l","creosote"="c","fishy"="y","foul"="f",
                   "musty"="m","none"="n","pungent"="p","spicy"="s")
 
@@ -25,8 +27,8 @@ gill_color_choices <- c("black"="k","brown"="n","buff"="b","chocolate"="h","gray
 
 stalk_shape_choices <- c("enlarging"="e","tapering"="t")
 
-stalk_root_choices <- c("bulbous"="b","club"="c","cup"="u","equal"="e",
-                        "rhizomorphs"="z","rooted"="r","missing"="?")
+# stalk_root_choices <- c("bulbous"="b","club"="c","cup"="u","equal"="e",
+#                        "rhizomorphs"="z","rooted"="r","missing"="?")
 
 stalk_surface_above_ring_choices <- c("fibrous"="f","scaly"="y","silky"="k","smooth"="s")
 
@@ -91,8 +93,9 @@ ui <- fluidPage(
       ),
 
       # bruises
-      checkboxInput(inputId="bruises", label="bruises?", value = FALSE),
-
+      selectInput(inputId="bruises", label="Bruises:",
+                  choices = bruises_choices, selected = "n"
+      ),
       # odor
       selectInput(inputId="odor", label="Odor:",
                   choices = odor_choices, selected = "n"
@@ -124,9 +127,9 @@ ui <- fluidPage(
       ),
 
       # stalk-root
-      selectInput(inputId="stalk_root", label="Stalk Root:",
-                  choices = stalk_root_choices, selected = "b"
-      ),
+      # selectInput(inputId="stalk_root", label="Stalk Root:",
+      #             choices = stalk_root_choices, selected = "b"
+      # ),
 
       # stalk-surface-above-ring
       selectInput(inputId="stalk_surface_above_ring", label="Stalk Surface Above Ring:",
@@ -206,6 +209,7 @@ server <- function(input, output) {
   #facet diagram (single Values)
   output$BarPlot <- renderPlot({
 
+    # cap_shape
     cap_shape_data  <- Daten %>%
       filter(cap_shape == input$cap_shape) %>%
       summarise(
@@ -213,15 +217,180 @@ server <- function(input, output) {
         category = paste("Cap Shape:", names(cap_shape_choices[cap_shape_choices == input$cap_shape]))
       )
 
+    # cap_surface
     cap_surface_data <- Daten %>%
       filter(cap_surface == input$cap_surface) %>%
       summarise(
         poisonous_percent = sum(edible == "p") / n() * 100,
         category = paste("Cap Surface:", names(cap_surface_choices[cap_surface_choices == input$cap_surface]))
       )
+
+    # cap_color
+    cap_color_data <- Daten %>%
+      filter(cap_color == input$cap_color) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Cap Color:", names(cap_color_choices[cap_color_choices == input$cap_color]))
+      )
+
+    # bruises
+    bruises_data <- Daten %>%
+      filter(bruises == input$bruises) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Bruises:", names(bruises_choices[bruises_choices == input$bruises]))
+      )
+
+    # odor
+    odor_data <- Daten %>%
+      filter(odor == input$odor) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Odor:", names(odor_choices[odor_choices == input$odor]))
+      )
+
+    # gill-attachment
+    gill_attachment_data <- Daten %>%
+      filter(cap_surface == input$gill_attachment) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Gill Attachment:", names(gill_attachment_choices[gill_attachment_choices == input$gill_attachment]))
+      )
+
+    # gill-spacing
+    gill_spacing_data <- Daten %>%
+      filter(gill_spacing == input$gill_spacing) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Gill Spacing:", names(gill_spacing_choices[gill_spacing_choices == input$gill_spacing]))
+      )
+
+    # gill-size
+    gill_size_data <- Daten %>%
+      filter(gill_size == input$gill_size) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Gill Size:", names(gill_size_choices[gill_size_choices == input$gill_size]))
+      )
+
+    # gill-color
+    gill_color_data <- Daten %>%
+      filter(gill_color == input$gill_color) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Gill Color:", names(gill_color_choices[gill_color_choices == input$gill_color]))
+      )
+
+    # stalk-shape
+    stalk_shape_data <- Daten %>%
+      filter(stalk_shape == input$stalk_shape) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Stalk Shape:", names(stalk_shape_choices[stalk_shape_choices == input$stalk_shape]))
+      )
+
+    # stalk-root
+    # stalk_root_data <- Daten %>%
+    #   filter(stalk_root == input$stalk_root) %>%
+    #   summarise(
+    #     poisonous_percent = sum(edible == "p") / n() * 100,
+    #     category = paste("Stalk Root:", names(stalk_root_choices[stalk_root_choices == input$stalk_root]))
+    #  )
+
+    # stalk-surface-above-ring
+    stalk_surface_above_ring_data <- Daten %>%
+      filter(stalk_surface_above_ring == input$stalk_surface_above_ring) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Stalk Surface Above Ring:", names(stalk_surface_above_ring_choices[stalk_surface_above_ring_choices == input$stalk_surface_above_ring]))
+      )
+
+    # stalk-surface-below-ring
+    stalk_surface_below_ring_data <- Daten %>%
+      filter(stalk_surface_below_ring == input$stalk_surface_below_ring) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Stalk Surface Below Ring:", names(stalk_surface_below_ring_choices[stalk_surface_below_ring_choices == input$stalk_surface_below_ring]))
+      )
+
+    # stalk-color-above-ring
+    stalk_color_above_ring_data <- Daten %>%
+      filter(stalk_color_above_ring == input$stalk_color_above_ring) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Stalk Color Above Ring:", names(stalk_color_above_ring_choices[stalk_color_above_ring_choices == input$stalk_color_above_ring]))
+      )
+
+    # stalk-color-below-ring
+    stalk_color_below_ring_data <- Daten %>%
+      filter(stalk_color_below_ring == input$stalk_color_below_ring) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Stalk Color Below Ring:", names(stalk_color_below_ring_choices[stalk_color_below_ring_choices == input$stalk_color_below_ring]))
+      )
+
+    # veil-type
+    veil_type_data <- Daten %>%
+      filter(veil_type == input$veil_type) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Veil Type:", names(veil_type_choices[veil_type_choices == input$veil_type]))
+      )
+
+    # veil-color
+    veil_color_data <- Daten %>%
+      filter(veil_color == input$veil_color) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Veil Color:", names(veil_color_choices[veil_color_choices == input$veil_color]))
+      )
+
+    # ring-number
+    ring_number_data <- Daten %>%
+      filter(ring_number == input$ring_number) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Ring Number:", names(ring_number_choices[ring_number_choices == input$ring_number]))
+      )
+
+    # ring-type
+    ring_type_data <- Daten %>%
+      filter(ring_type == input$ring_type) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Ring Type:", names(ring_type_choices[ring_type_choices == input$ring_type]))
+      )
+
+    # spore-print-color
+    spore_print_color_data <- Daten %>%
+      filter(spore_print_color == input$spore_print_color) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Spore Print Color:", names(spore_print_color_choices[spore_print_color_choices == input$spore_print_color]))
+      )
+
+    # population
+    population_data <- Daten %>%
+      filter(population == input$population) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Population:", names(population_choices[population_choices == input$population]))
+      )
+
+    # habitat
+    habitat_data <- Daten %>%
+      filter(habitat == input$habitat) %>%
+      summarise(
+        poisonous_percent = sum(edible == "p") / n() * 100,
+        category = paste("Habitat:", names(habitat_choices[habitat_choices == input$habitat]))
+      )
     
     # Daten fürs Plotten. Für richtige Reihenfolge umdrehen, und dann die Kategorie as Faktor setzen
-    plot_data <- bind_rows(cap_shape_data, cap_surface_data)
+    plot_data <- bind_rows(cap_shape_data, cap_surface_data, cap_color_data, bruises_data, odor_data,
+                           gill_attachment_data, gill_spacing_data, gill_size_data, gill_color_data,
+                           stalk_shape_data, stalk_surface_above_ring_data, stalk_surface_below_ring_data,
+                           stalk_color_above_ring_data, stalk_color_below_ring_data, veil_type_data, veil_color_data,
+                           ring_number_data, ring_type_data, spore_print_color_data, population_data, habitat_data)
     plot_data <- plot_data[rev(seq_len(nrow(plot_data))), ]
     plot_data$category <- factor(plot_data$category, levels = plot_data$category)
 
