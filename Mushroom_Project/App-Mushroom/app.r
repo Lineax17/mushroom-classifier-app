@@ -1,4 +1,5 @@
-
+#Choices
+#region Choices
 cap_shape_choices <- c("Bell" = "b", "Conical" = "c", "Convex" = "x",
                        "Flat" = "f", "Knobbed" = "k", "Sunken" = "s")
 
@@ -12,58 +13,71 @@ cap_color_choices <- c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c",
 
 bruises_choices <- c("Bruises" = "t", "No Bruises" = "f")
 
-odor_choices <- c("almond"="a","anise"="l","creosote"="c","fishy"="y","foul"="f",
-                  "musty"="m","none"="n","pungent"="p","spicy"="s")
+odor_choices <- c("almond" = "a", "anise" = "l", "creosote" = "c", "fishy" = "y", "foul" = "f",
+                  "musty" = "m", "none" = "n", "pungent" = "p", "spicy" = "s")
 
-gill_attachment_choices <- c("attached"="a","descending"="d","free"="f","notched"="n")
+gill_attachment_choices <- c("attached" = "a", "descending" = "d", "free" = "f", "notched" = "n")
 
-gill_spacing_choices <- c("close"="c","crowded"="w","distant"="d")
+gill_spacing_choices <- c("close" = "c", "crowded" = "w", "distant" = "d")
 
-gill_size_choices <- c("broad"="b","narrow"="n")
+gill_size_choices <- c("broad" = "b", "narrow" = "n")
 
-gill_color_choices <- c("black"="k","brown"="n","buff"="b","chocolate"="h","gray"="g",
-                        "green"="r","orange"="o","pink"="p","purple"="u","red"="e",
-                        "white"="w","yellow"="y")
+gill_color_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "gray" = "g",
+                        "green" = "r", "orange" = "o", "pink" = "p", "purple" = "u", "red" = "e",
+                        "white" = "w", "yellow" = "y")
 
-stalk_shape_choices <- c("enlarging"="e","tapering"="t")
+stalk_shape_choices <- c("enlarging" = "e", "tapering" = "t")
 
 # stalk_root_choices <- c("bulbous"="b","club"="c","cup"="u","equal"="e",
 #                        "rhizomorphs"="z","rooted"="r","missing"="?")
 
-stalk_surface_above_ring_choices <- c("fibrous"="f","scaly"="y","silky"="k","smooth"="s")
+stalk_surface_above_ring_choices <- c("fibrous" = "f", "scaly" = "y", "silky" = "k", "smooth" = "s")
 
-stalk_surface_below_ring_choices <- c("fibrous"="f","scaly"="y","silky"="k","smooth"="s")
+stalk_surface_below_ring_choices <- c("fibrous" = "f", "scaly" = "y", "silky" = "k", "smooth" = "s")
 
-stalk_color_above_ring_choices <- c("black"="k","brown"="n","buff"="b","chocolate"="h","gray"="g",
-                                    "green"="r","orange"="o","pink"="p","purple"="u","red"="e",
-                                    "white"="w","yellow"="y")
+stalk_color_above_ring_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "gray" = "g",
+                                    "green" = "r", "orange" = "o", "pink" = "p", "purple" = "u", "red" = "e",
+                                    "white" = "w", "yellow" = "y")
 
-stalk_color_below_ring_choices <- c("black"="k","brown"="n","buff"="b","chocolate"="h","gray"="g",
-                                    "green"="r","orange"="o","pink"="p","purple"="u","red"="e",
-                                    "white"="w","yellow"="y")
+stalk_color_below_ring_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "gray" = "g",
+                                    "green" = "r", "orange" = "o", "pink" = "p", "purple" = "u", "red" = "e",
+                                    "white" = "w", "yellow" = "y")
 
-veil_type_choices <- c("partial"="p","universal"="u")
+veil_type_choices <- c("partial" = "p", "universal" = "u")
 
-veil_color_choices <- c("brown"="n","orange"="o","white"="w","yellow"="y")
+veil_color_choices <- c("brown" = "n", "orange" = "o", "white" = "w", "yellow" = "y")
 
-ring_number_choices <- c("none"="n","one"="o","two"="t")
+ring_number_choices <- c("none" = "n", "one" = "o", "two" = "t")
 
-ring_type_choices <- c("cobwebby"="c","evanescent"="e","flaring"="f","large"="l",
-                        "none"="n","pendant"="p","sheathing"="s","zone"="z")
+ring_type_choices <- c("cobwebby" = "c", "evanescent" = "e", "flaring" = "f", "large" = "l",
+                       "none" = "n", "pendant" = "p", "sheathing" = "s", "zone" = "z")
 
-spore_print_color_choices <- c("black"="k","brown"="n","buff"="b","chocolate"="h","green"="r",
-                               "orange"="o","purple"="u","white"="w","yellow"="y")
+spore_print_color_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "green" = "r",
+                               "orange" = "o", "purple" = "u", "white" = "w", "yellow" = "y")
 
-population_choices <- c("abundant"="a","clustered"="c","numerous"="n",
-                        "scattered"="s","several"="v","solitary"="y")
+population_choices <- c("abundant" = "a", "clustered" = "c", "numerous" = "n",
+                        "scattered" = "s", "several" = "v", "solitary" = "y")
 
-habitat_choices <- c("grasses"="g","leaves"="l","meadows"="m","paths"="p",
-                     "urban"="u","waste"="w","woods"="d")
+habitat_choices <- c("grasses" = "g", "leaves" = "l", "meadows" = "m", "paths" = "p",
+                     "urban" = "u", "waste" = "w", "woods" = "d")
+#endregion
 
 ################
 # Im folgenden Abschnitt wird das User Interface (UI) definiert
 ui <- fluidPage(
-
+  tags$head(
+    tags$style(HTML("
+      .sidebar {
+        font-size: 12px;  /* Verkleinere die Schriftgröße */
+      }
+      .selectize-input, .selectize-dropdown {
+        font-size: 15px;  /* Verkleinere Schriftgröße in Dropdowns */
+      }
+      .form-group {
+        margin-bottom: 5px;  /* Verkleinere Abstände zwischen Eingaben */
+      }
+    "))
+  ),
   # Titel der App
   titlePanel("Mushroom"),
 
@@ -72,119 +86,148 @@ ui <- fluidPage(
 
     # Die Definition der Eingabefelder auf der linken Seite
     sidebarPanel(
+      #SidePanel
+      # #region SidePanel
 
       # Eine Überschrift mit Linie darunter
-      h4("Pilz Merkmale auswählen:",align="left"),
-      hr(style="height: 1px; background: black"),
+      h4("Pilz Merkmale auswählen:", align = "left"),
+      hr(style = "height: 1px; background: black"),
 
-      # cap-shape
-      selectInput(inputId="cap_shape", label="Cap Shape:",
-                  choices = cap_shape_choices, selected = "b"
-      ),
+      fluidRow(
 
-      # cap-surface
-      selectInput(inputId="cap_surface", label="Cap Surface:",
-                  choices = cap_surface_choices , selected = "g"
-      ),
+        # cap-shape
+        column(6,
+               selectInput(inputId = "cap_shape", label = "Cap Shape:",
+                           choices = cap_shape_choices, selected = "b"
+               )),
 
-      # cap_color
-      selectInput(inputId="cap_color", label="Cap Color:",
-                  choices = cap_color_choices, selected = "n"
-      ),
+        # cap-surface
+        column(6,
+               selectInput(inputId = "cap_surface", label = "Cap Surface:",
+                           choices = cap_surface_choices, selected = "g"
+               )),
 
-      # bruises
-      selectInput(inputId="bruises", label="Bruises:",
-                  choices = bruises_choices, selected = "n"
-      ),
-      # odor
-      selectInput(inputId="odor", label="Odor:",
-                  choices = odor_choices, selected = "n"
-      ),
+        # cap_color
+        column(6,
+               selectInput(inputId = "cap_color", label = "Cap Color:",
+                           choices = cap_color_choices, selected = "n"
+               )),
 
-      # gill-attachment
-      selectInput(inputId="gill_attachment", label="Gill Attachment:",
-                  choices = gill_attachment_choices, selected = "n"
-      ),
+        # bruises
+        column(6,
+               selectInput(inputId = "bruises", label = "Bruises:",
+                           choices = bruises_choices, selected = "n"
+               )),
 
-      # gill-spacing
-      selectInput(inputId="gill_spacing", label="Gill Spacing:",
-                  choices = gill_spacing_choices, selected = "c"
-      ),
+        # odor
+        column(6,
+               selectInput(inputId = "odor", label = "Odor:",
+                           choices = odor_choices, selected = "n"
+               )),
 
-      # gill-size
-      selectInput(inputId="gill_size", label="Gill Size:",
-                  choices = gill_size_choices, selected = "n"
-      ),
+        # gill-attachment
+        column(6,
+               selectInput(inputId = "gill_attachment", label = "Gill Attachment:",
+                           choices = gill_attachment_choices, selected = "n"
+               )),
 
-      # gill-color
-      selectInput(inputId="gill_color", label="Gill Color:",
-                  choices = gill_color_choices, selected = "n"
-      ),
+        # gill-spacing
+        column(6,
+               selectInput(inputId = "gill_spacing", label = "Gill Spacing:",
+                           choices = gill_spacing_choices, selected = "c"
+               )),
 
-      # stalk-shape
-      selectInput(inputId="stalk_shape", label="Stalk Shape:",
-                  choices = stalk_shape_choices, selected = "e"
-      ),
+        # gill-size
+        column(6,
+               selectInput(inputId = "gill_size", label = "Gill Size:",
+                           choices = gill_size_choices, selected = "n"
+               )),
 
-      # stalk-root
-      # selectInput(inputId="stalk_root", label="Stalk Root:",
-      #             choices = stalk_root_choices, selected = "b"
-      # ),
+        # gill-color
+        column(6,
+               selectInput(inputId = "gill_color", label = "Gill Color:",
+                           choices = gill_color_choices, selected = "n"
+               )),
 
-      # stalk-surface-above-ring
-      selectInput(inputId="stalk_surface_above_ring", label="Stalk Surface Above Ring:",
-                  choices = stalk_surface_above_ring_choices, selected = "f"
-      ),
+        # stalk-shape
+        column(6,
+               selectInput(inputId = "stalk_shape", label = "Stalk Shape:",
+                           choices = stalk_shape_choices, selected = "e"
+               )),
 
-      # stalk-surface-below-ring
-      selectInput(inputId="stalk_surface_below_ring", label="Stalk Surface Below Ring:",
-                  choices = stalk_surface_below_ring_choices, selected = "f"
-      ),
+        # stalk-root
+        #column(6,
+        # selectInput(inputId="stalk_root", label="Stalk Root:",
+        #             choices = stalk_root_choices, selected = "b"
+        # )),
 
-      # stalk-color-above-ring
-      selectInput(inputId="stalk_color_above_ring", label="Stalk Color Above Ring:",
-                  choices = stalk_color_above_ring_choices, selected = "n"
-      ),
+        # stalk-surface-above-ring
+        column(6,
+               selectInput(inputId = "stalk_surface_above_ring", label = "Stalk Surface Above Ring:",
+                           choices = stalk_surface_above_ring_choices, selected = "f"
+               )),
 
-      # stalk-color-below-ring
-      selectInput(inputId="stalk_color_below_ring", label="Stalk Color Below Ring:",
-                  choices = stalk_color_below_ring_choices, selected = "n"
-      ),
+        # stalk-surface-below-ring
+        column(6,
+               selectInput(inputId = "stalk_surface_below_ring", label = "Stalk Surface Below Ring:",
+                           choices = stalk_surface_below_ring_choices, selected = "f"
+               )),
 
-      # veil-type
-      selectInput(inputId="veil_type", label="Veil Type:",
-                  choices = veil_type_choices, selected = "p"
-      ),
+        # stalk-color-above-ring
+        column(6,
+               selectInput(inputId = "stalk_color_above_ring", label = "Stalk Color Above Ring:",
+                           choices = stalk_color_above_ring_choices, selected = "n"
+               )),
 
-      # veil-color
-      selectInput(inputId="veil_color", label="Veil Color:",
-                  choices = veil_color_choices, selected = "n"
-      ),
+        # stalk-color-below-ring
+        column(6,
+               selectInput(inputId = "stalk_color_below_ring", label = "Stalk Color Below Ring:",
+                           choices = stalk_color_below_ring_choices, selected = "n"
+               )),
 
-      # ring-number
-      selectInput(inputId="ring_number", label="Ring Number:",
-                  choices = ring_number_choices, selected = "n"
-      ),
+        # veil-type
+        column(6,
+               selectInput(inputId = "veil_type", label = "Veil Type:",
+                           choices = veil_type_choices, selected = "p"
+               )),
 
-      # ring-type
-      selectInput(inputId="ring_type", label="Ring Type:",
-                  choices = ring_type_choices, selected = "c"
-      ),
+        # veil-color
+        column(6,
+               selectInput(inputId = "veil_color", label = "Veil Color:",
+                           choices = veil_color_choices, selected = "n"
+               )),
 
-      # spore-print-color
-      selectInput(inputId="spore_print_color", label="Spore Print Color:",
-                  choices = spore_print_color_choices, selected = "n"
-      ),
+        # ring-number
+        column(6,
+               selectInput(inputId = "ring_number", label = "Ring Number:",
+                           choices = ring_number_choices, selected = "n"
+               )),
 
-      # population
-      selectInput(inputId="population", label="Population:",
-                  choices = population_choices, selected = "n"
-      ),
+        # ring-type
+        column(6,
+               selectInput(inputId = "ring_type", label = "Ring Type:",
+                           choices = ring_type_choices, selected = "c"
+               )),
 
-      # habitat
-      selectInput(inputId="habitat", label="Habitat:",
-                  choices = habitat_choices, selected = "d"
+        # spore-print-color
+        column(6,
+               selectInput(inputId = "spore_print_color", label = "Spore Print Color:",
+                           choices = spore_print_color_choices, selected = "n"
+               )),
+
+        # population
+        column(6,
+               selectInput(inputId = "population", label = "Population:",
+                           choices = population_choices, selected = "n"
+               )),
+
+        # habitat
+        column(6,
+               selectInput(inputId = "habitat", label = "Habitat:",
+                           choices = habitat_choices, selected = "d"
+               )),
       ),
+      #endregion
 
     ),
 
@@ -193,7 +236,7 @@ ui <- fluidPage(
 
       # Ausgabe des Histogramms
       plotOutput(outputId = "BarPlot"),
-     # plotOutput(outputId = "BarPlot", height = 2 * 50)
+      # plotOutput(outputId = "BarPlot", height = 2 * 50)
       # Ausgabe der Prognose
       #textOutput("Prognose"),
 
@@ -206,11 +249,13 @@ ui <- fluidPage(
 
 server <- function(input, output) {
 
-  #facet diagram (single Values)
+  #Bar diagram (single Values)
   output$BarPlot <- renderPlot({
 
+    # Eingeschaften Filtern
+    #region Eingeschaften Filtern
     # cap_shape
-    cap_shape_data  <- Daten %>%
+    cap_shape_data <- Daten %>%
       filter(cap_shape == input$cap_shape) %>%
       summarise(
         poisonous_percent = sum(edible == "p") / n() * 100,
@@ -384,14 +429,15 @@ server <- function(input, output) {
         poisonous_percent = sum(edible == "p") / n() * 100,
         category = paste("Habitat:", names(habitat_choices[habitat_choices == input$habitat]))
       )
-    
+    #endregion
+
     # Daten fürs Plotten. Für richtige Reihenfolge umdrehen, und dann die Kategorie as Faktor setzen
     plot_data <- bind_rows(cap_shape_data, cap_surface_data, cap_color_data, bruises_data, odor_data,
                            gill_attachment_data, gill_spacing_data, gill_size_data, gill_color_data,
                            stalk_shape_data, stalk_surface_above_ring_data, stalk_surface_below_ring_data,
                            stalk_color_above_ring_data, stalk_color_below_ring_data, veil_type_data, veil_color_data,
                            ring_number_data, ring_type_data, spore_print_color_data, population_data, habitat_data)
-    plot_data <- plot_data[rev(seq_len(nrow(plot_data))), ]
+    plot_data <- plot_data[rev(seq_len(nrow(plot_data))),]
     plot_data$category <- factor(plot_data$category, levels = plot_data$category)
 
 
@@ -410,36 +456,36 @@ server <- function(input, output) {
         legend.position = "none"                   # Entferne die Legende
       )
   })
-  
+
   # output$FacetPlot <- renderPlot({
   #   tryCatch({
   #     # Allow multiple selections
-  #     selected_shapes <- input$selected_shapes 
+  #     selected_shapes <- input$selected_shapes
   #     selected_colors <- input$selected_colors
-  #     
+  #
   #     filtered_data <- Daten %>%
   #       filter(
-  #         cap_shape %in% selected_shapes, 
+  #         cap_shape %in% selected_shapes,
   #         cap_color %in% selected_colors
-  #       ) 
-  #     
+  #       )
+  #
   #     if (nrow(filtered_data) == 0) {
   #       return(NULL)  # Return NULL if no data
   #     }
-  #     
+  #
   #     # Calculate percentage of poisonous mushrooms
   #     poisonous_prop <- sum(filtered_data$edible == "p") / nrow(filtered_data) * 100
-  #     
+  #
   #     ggplot(data.frame(poisonous_prop = poisonous_prop), aes(x = poisonous_prop)) +
   #       geom_bar(stat = "identity", fill = "red") +
-  #       xlim(0, 100) + 
+  #       xlim(0, 100) +
   #       labs(
   #         x = "Percentage Poisonous",
   #         y = "Frequency",
   #         title = paste("Edibility for Selected Criteria")
   #       ) +
   #       theme_minimal()
-  #     
+  #
   #   }, error = function(e) {
   #     print(paste("Error encountered:", e))
   #     return(NULL)
@@ -447,7 +493,6 @@ server <- function(input, output) {
   # })
 
 }
-
 
 
 # Aufruf der App-Funktionen
