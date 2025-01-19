@@ -13,7 +13,6 @@ Daten[] <- lapply(Daten, as.factor)
 # Berechnung der linearen Regression
 
 #model <- lm( edible ~ cap_shape + cap_surface + cap_color, data=Daten)
-di
 
 # Starten der Shiny-App
 
