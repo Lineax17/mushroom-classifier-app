@@ -3,12 +3,15 @@
 cap_shape_choices <- c("Bell" = "b", "Conical" = "c", "Convex" = "x",
                        "Flat" = "f", "Knobbed" = "k", "Sunken" = "s")
 
-choices_content <- lapply(names(cap_shape_choices), function(name) {
+cap_shape_choices_content <- lapply(names(cap_shape_choices), function(name) {
   paste0('<img src="images/Cap_Shape_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
 })
 
 cap_surface_choices <- c("Fibrous" = "f", "Grooves" = "g", "Scaly" = "y",
                          "Smooth" = "s")
+cap_surface_choices_content <- lapply(names(cap_surface_choices), function(name) {
+  paste0('<img src="images/Cap_Surface_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
+})
 
 cap_color_choices <- c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c",
                        "Gray" = "g", "Green" = "r", "Pink" = "p",
@@ -17,53 +20,62 @@ cap_color_choices <- c("Brown" = "n", "Buff" = "b", "Cinnamon" = "c",
 
 bruises_choices <- c("Bruises" = "t", "No Bruises" = "f")
 
-odor_choices <- c("almond" = "a", "anise" = "l", "creosote" = "c", "fishy" = "y", "foul" = "f",
-                  "musty" = "m", "none" = "n", "pungent" = "p", "spicy" = "s")
+odor_choices <- c("Almond" = "a", "Anise" = "l", "Creosote" = "c", "Fishy" = "y", "Foul" = "f",
+                  "Musty" = "m", "None" = "n", "Pungent" = "p", "Spicy" = "s")
 
-gill_attachment_choices <- c("attached" = "a", "descending" = "d", "free" = "f", "notched" = "n")
+gill_attachment_choices <- c("Attached" = "a", "Descending" = "d", "Free" = "f", "Notched" = "n")
+gill_attachment_choices_content <- lapply(names(gill_attachment_choices), function(name) {
+  paste0('<img src="images/Gill_Attachment_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
+})
 
-gill_spacing_choices <- c("close" = "c", "crowded" = "w", "distant" = "d")
+gill_spacing_choices <- c("Close" = "c", "Crowded" = "w", "Distant" = "d")
+gill_spacing_choices_content <- lapply(names(gill_spacing_choices), function(name) {
+  paste0('<img src="images/Gill_Spacing_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
+})
 
-gill_size_choices <- c("broad" = "b", "narrow" = "n")
+gill_size_choices <- c("Broad" = "b", "Narrow" = "n")
 
-gill_color_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "gray" = "g",
-                        "green" = "r", "orange" = "o", "pink" = "p", "purple" = "u", "red" = "e",
-                        "white" = "w", "yellow" = "y")
+gill_color_choices <- c("Black" = "k", "Brown" = "n", "Buff" = "b", "Chocolate" = "h", "Gray" = "g",
+                        "Green" = "r", "Orange" = "o", "Pink" = "p", "Purple" = "u", "Red" = "e",
+                        "White" = "w", "Yellow" = "y")
 
-stalk_shape_choices <- c("enlarging" = "e", "tapering" = "t")
+stalk_shape_choices <- c("Enlarging" = "e", "Tapering" = "t")
 
 # stalk_root_choices <- c("bulbous"="b","club"="c","cup"="u","equal"="e",
 #                        "rhizomorphs"="z","rooted"="r","missing"="?")
 
-stalk_surface_above_ring_choices <- c("fibrous" = "f", "scaly" = "y", "silky" = "k", "smooth" = "s")
+stalk_surface_above_ring_choices <- c("Fibrous" = "f", "Scaly" = "y", "Silky" = "k", "Smooth" = "s")
 
-stalk_surface_below_ring_choices <- c("fibrous" = "f", "scaly" = "y", "silky" = "k", "smooth" = "s")
+stalk_surface_below_ring_choices <- c("Fibrous" = "f", "Scaly" = "y", "Silky" = "k", "Smooth" = "s")
 
-stalk_color_above_ring_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "gray" = "g",
-                                    "green" = "r", "orange" = "o", "pink" = "p", "purple" = "u", "red" = "e",
-                                    "white" = "w", "yellow" = "y")
+stalk_color_above_ring_choices <- c("Black" = "k", "Brown" = "n", "Buff" = "b", "Chocolate" = "h", "Gray" = "g",
+                                    "Green" = "r", "Orange" = "o", "Pink" = "p", "Purple" = "u", "Red" = "e",
+                                    "White" = "w", "Yellow" = "y")
 
-stalk_color_below_ring_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "gray" = "g",
-                                    "green" = "r", "orange" = "o", "pink" = "p", "purple" = "u", "red" = "e",
-                                    "white" = "w", "yellow" = "y")
+stalk_color_below_ring_choices <- c("Black" = "k", "Brown" = "n", "Buff" = "b", "Chocolate" = "h", "Gray" = "g",
+                                    "Green" = "r", "Orange" = "o", "Pink" = "p", "Purple" = "u", "Red" = "e",
+                                    "White" = "w", "Yellow" = "y")
 
-veil_type_choices <- c("partial" = "p", "universal" = "u")
+veil_type_choices <- c("Partial" = "p", "Universal" = "u")
 
-veil_color_choices <- c("brown" = "n", "orange" = "o", "white" = "w", "yellow" = "y")
+veil_color_choices <- c("Brown" = "n", "Orange" = "o", "White" = "w", "Yellow" = "y")
 
-ring_number_choices <- c("none" = "n", "one" = "o", "two" = "t")
+ring_number_choices <- c("None" = "n", "One" = "o", "Two" = "t")
 
-ring_type_choices <- c("cobwebby" = "c", "evanescent" = "e", "flaring" = "f", "large" = "l",
-                       "none" = "n", "pendant" = "p", "sheathing" = "s", "zone" = "z")
+ring_type_choices <- c("Cobwebby" = "c", "Evanescent" = "e", "Flaring" = "f", "Large" = "l",
+                       "None" = "n", "Pendant" = "p", "Sheathing" = "s", "Zone" = "z")
+ring_type_choices_content <- lapply(names(ring_type_choices), function(name) {
+  paste0('<img src="images/Ring_Type_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
+})
 
-spore_print_color_choices <- c("black" = "k", "brown" = "n", "buff" = "b", "chocolate" = "h", "green" = "r",
-                               "orange" = "o", "purple" = "u", "white" = "w", "yellow" = "y")
+spore_print_color_choices <- c("Black" = "k", "Brown" = "n", "Buff" = "b", "Chocolate" = "h", "Green" = "r",
+                               "Orange" = "o", "Purple" = "u", "White" = "w", "Yellow" = "y")
 
-population_choices <- c("abundant" = "a", "clustered" = "c", "numerous" = "n",
-                        "scattered" = "s", "several" = "v", "solitary" = "y")
+population_choices <- c("Abundant" = "a", "Clustered" = "c", "Numerous" = "n",
+                        "Scattered" = "s", "Several" = "v", "Solitary" = "y")
 
-habitat_choices <- c("grasses" = "g", "leaves" = "l", "meadows" = "m", "paths" = "p",
-                     "urban" = "u", "waste" = "w", "woods" = "d")
+habitat_choices <- c("Grasses" = "g", "Leaves" = "l", "Meadows" = "m", "Paths" = "p",
+                     "Urban" = "u", "Waste" = "w", "Woods" = "d")
 #endregion
 
 ################
@@ -94,10 +106,9 @@ ui <- fluidPage(
       # #region SidePanel
 
       # Eine Überschrift mit Linie darunter
-      h4("Pilz Merkmale auswählen:", align = "center"),
+      h4("Pilz Merkmale auswählen:", align = "left"),
+      tags$img(src = "mushroom_overview.png", alt = "Test Image", style = "width:20px; height:20px;"),
       hr(style = "height: 1px; background: black"),
-
-
 
       fluidRow(
 
@@ -105,13 +116,14 @@ ui <- fluidPage(
         column(6,
                pickerInput(inputId = "cap_shape", label = "Cap Shape:",
                  choices = cap_shape_choices, selected = "b",
-                 choicesOpt = list(content = unlist(choices_content))
+                 choicesOpt = list(content = unlist(cap_shape_choices_content))
                )),
 
         # cap-surface
         column(6,
-               selectInput(inputId = "cap_surface", label = "Cap Surface:",
-                           choices = cap_surface_choices, selected = NULL
+               pickerInput(inputId = "cap_surface", label = "Cap Surface:",
+                           choices = cap_surface_choices, selected = "b",
+                           choicesOpt = list(content = unlist(cap_surface_choices_content))
                )),
 
         # cap_color
@@ -134,14 +146,16 @@ ui <- fluidPage(
 
         # gill-attachment
         column(6,
-               selectInput(inputId = "gill_attachment", label = "Gill Attachment:",
-                           choices = gill_attachment_choices, selected = "n"
+               pickerInput(inputId = "gill_attachment", label = "Gill Attachment:",
+                           choices = gill_attachment_choices, selected = "b",
+                           choicesOpt = list(content = unlist(gill_attachment_choices_content))
                )),
 
         # gill-spacing
         column(6,
-               selectInput(inputId = "gill_spacing", label = "Gill Spacing:",
-                           choices = gill_spacing_choices, selected = "c"
+               pickerInput(inputId = "gill_spacing", label = "Gill Spacing:",
+                           choices = gill_spacing_choices, selected = "b",
+                           choicesOpt = list(content = unlist(gill_spacing_choices_content))
                )),
 
         # gill-size
@@ -212,8 +226,9 @@ ui <- fluidPage(
 
         # ring-type
         column(6,
-               selectInput(inputId = "ring_type", label = "Ring Type:",
-                           choices = ring_type_choices, selected = "c"
+               pickerInput(inputId = "ring_type", label = "Ring Type:",
+                           choices = ring_type_choices, selected = "b",
+                           choicesOpt = list(content = unlist(ring_type_choices_content))
                )),
 
         # spore-print-color
