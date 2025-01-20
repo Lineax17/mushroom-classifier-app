@@ -23,12 +23,12 @@ bruises_choices <- c("Bruises" = "t", "No Bruises" = "f")
 odor_choices <- c("Almond" = "a", "Anise" = "l", "Creosote" = "c", "Fishy" = "y", "Foul" = "f",
                   "Musty" = "m", "None" = "n", "Pungent" = "p", "Spicy" = "s")
 
-gill_attachment_choices <- c("Attached" = "a", "Descending" = "d", "Free" = "f", "Notched" = "n")
+gill_attachment_choices <- c("Attached" = "a", "Free" = "f")
 gill_attachment_choices_content <- lapply(names(gill_attachment_choices), function(name) {
   paste0('<img src="images/Gill_Attachment_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
 })
 
-gill_spacing_choices <- c("Close" = "c", "Crowded" = "w", "Distant" = "d")
+gill_spacing_choices <- c("Close" = "c", "Crowded" = "w")
 gill_spacing_choices_content <- lapply(names(gill_spacing_choices), function(name) {
   paste0('<img src="images/Gill_Spacing_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
 })
@@ -56,14 +56,12 @@ stalk_color_below_ring_choices <- c("Black" = "k", "Brown" = "n", "Buff" = "b", 
                                     "Green" = "r", "Orange" = "o", "Pink" = "p", "Purple" = "u", "Red" = "e",
                                     "White" = "w", "Yellow" = "y")
 
-veil_type_choices <- c("Partial" = "p", "Universal" = "u")
-
 veil_color_choices <- c("Brown" = "n", "Orange" = "o", "White" = "w", "Yellow" = "y")
 
 ring_number_choices <- c("None" = "n", "One" = "o", "Two" = "t")
 
-ring_type_choices <- c("Cobwebby" = "c", "Evanescent" = "e", "Flaring" = "f", "Large" = "l",
-                       "None" = "n", "Pendant" = "p", "Sheathing" = "s", "Zone" = "z")
+ring_type_choices <- c("Evanescent" = "e", "Flaring" = "f", "Large" = "l",
+                       "None" = "n", "Pendant" = "p")
 ring_type_choices_content <- lapply(names(ring_type_choices), function(name) {
   paste0('<img src="images/Ring_Type_', name, '.png" style="width:16px; height:16px; margin-right:10px;"> ', name)
 })
@@ -208,12 +206,6 @@ ui <- fluidPage(
                            choices = stalk_color_below_ring_choices, selected = "n"
                )),
 
-        # veil-type
-        column(6,
-               selectInput(inputId = "veil_type", label = "Veil Type:",
-                           choices = veil_type_choices, selected = "p"
-               )),
-
         # veil-color
         column(6,
                selectInput(inputId = "veil_color", label = "Veil Color:",
@@ -315,7 +307,7 @@ server <- function(input, output, session) {
 
     # gill-attachment
     gill_attachment_data <- data %>%
-      filter(cap_surface == input$gill_attachment) %>%
+      filter(gill_attachment == input$gill_attachment) %>%
       summarise(
         poisonous_percent = sum(edible == "p") / n() * 100,
         category = paste("Gill Attachment:", names(gill_attachment_choices[gill_attachment_choices == input$gill_attachment]))
@@ -393,14 +385,6 @@ server <- function(input, output, session) {
         category = paste("Stalk Color Below Ring:", names(stalk_color_below_ring_choices[stalk_color_below_ring_choices == input$stalk_color_below_ring]))
       )
 
-    # veil-type
-    veil_type_data <- data %>%
-      filter(veil_type == input$veil_type) %>%
-      summarise(
-        poisonous_percent = sum(edible == "p") / n() * 100,
-        category = paste("Veil Type:", names(veil_type_choices[veil_type_choices == input$veil_type]))
-      )
-
     # veil-color
     veil_color_data <- data %>%
       filter(veil_color == input$veil_color) %>%
@@ -454,7 +438,7 @@ server <- function(input, output, session) {
     plot_data <- bind_rows(cap_shape_data, cap_surface_data, cap_color_data, bruises_data, odor_data,
                            gill_attachment_data, gill_spacing_data, gill_size_data, gill_color_data,
                            stalk_shape_data, stalk_surface_above_ring_data, stalk_surface_below_ring_data,
-                           stalk_color_above_ring_data, stalk_color_below_ring_data, veil_type_data, veil_color_data,
+                           stalk_color_above_ring_data, stalk_color_below_ring_data, veil_color_data,
                            ring_number_data, ring_type_data, spore_print_color_data, population_data, habitat_data)
     plot_data <- plot_data[rev(seq_len(nrow(plot_data))),]
     plot_data$category <- factor(plot_data$category, levels = plot_data$category)
@@ -493,7 +477,6 @@ server <- function(input, output, session) {
       stalk_surface_below_ring = input$stalk_surface_below_ring,
       stalk_color_above_ring = input$stalk_color_above_ring,
       stalk_color_below_ring = input$stalk_color_below_ring,
-      veil_type = input$veil_type,
       veil_color = input$veil_color,
       ring_number = input$ring_number,
       ring_type = input$ring_type,
@@ -588,15 +571,6 @@ server <- function(input, output, session) {
                       selected = mapped_data[1])
   })
 
-  observeEvent(input$gill_spacing, {
-    req(input$gill_spacing)
-    filtered_data <- unique(data$gill_size[data$gill_spacing == input$gill_spacing])
-    mapped_data <- gill_size_choices[gill_size_choices %in% filtered_data]
-    updateSelectInput(session, "gill_size",
-                      choices = mapped_data,
-                      selected = mapped_data[1])
-  })
-
   observeEvent(input$gill_size, {
     req(input$gill_size)
     filtered_data <- unique(data$gill_color[data$gill_size == input$gill_size])
@@ -653,16 +627,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$stalk_color_below_ring, {
     req(input$stalk_color_below_ring)
-    filtered_data <- unique(data$veil_type[data$stalk_color_below_ring == input$stalk_color_below_ring])
-    mapped_data <- veil_type_choices[veil_type_choices %in% filtered_data]
-    updateSelectInput(session, "veil_type",
-                      choices = mapped_data,
-                      selected = mapped_data[1])
-  })
-
-  observeEvent(input$veil_type, {
-    req(input$veil_type)
-    filtered_data <- unique(data$veil_color[data$veil_type == input$veil_type])
+    filtered_data <- unique(data$veil_color[data$stalk_color_below_ring == input$stalk_color_below_ring])
     mapped_data <- veil_color_choices[veil_color_choices %in% filtered_data]
     updateSelectInput(session, "veil_color",
                       choices = mapped_data,
