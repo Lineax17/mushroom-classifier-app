@@ -94,7 +94,7 @@ ui <- fluidPage(
       # #region SidePanel
 
       # Eine Überschrift mit Linie darunter
-      h4("Pilz Merkmale auswählen:", align = "left"),
+      h4("Pilz Merkmale auswählen:", align = "center"),
       hr(style = "height: 1px; background: black"),
 
 
@@ -241,7 +241,7 @@ ui <- fluidPage(
     # der Hauptbereich der Nutzeroberfläche für die Ausgabe der Ergebnisse
     mainPanel(
       #plotOutput(outputId = "BarPlot"),
-      verbatimTextOutput("prediction"),
+      htmlOutput("prediction"),
       plotOutput(outputId = "BarPlot", height = 20 * 21)
     )
   )
@@ -251,9 +251,6 @@ ui <- fluidPage(
 
 
 server <- function(input, output, session) {
-  observe({
-    print(paste("Initialwert für cap_shape:", input$cap_shape))
-  })
 
   observeEvent(input$cap_shape, {
     #Warted auf auswahl von cap_shape
@@ -506,8 +503,16 @@ server <- function(input, output, session) {
     # Vorhersage basierend auf Benutzereingaben
     tryCatch({
       # Prediction durchführen
-      prediction <- predict(decision_tree, user_input, type = "class")
-      paste("Der Pilz ist:", ifelse(prediction == "e", "Essbar", "Giftig"))
+      output$prediction <- renderUI({
+        # Beispielvorhersage (ersetze durch dein Modell)
+        prediction <- ifelse(input$cap_shape == "b" && input$cap_surface == "f", "e", "p")
+        text <- ifelse(prediction == "e", "Essbar", "Giftig")
+        color <- ifelse(prediction == "e", "green", "red")
+
+        # Dynamische Ausgabe
+        HTML(paste0('<h4 style="color:', color, '; font-size: 20px; font-weight: bold; text-align: center;">',
+                    "Der Pilz ist: ", text, '</h4>'))
+      })
     }, error = function(e) {
       # Fehler abfangen und Meldung ausgeben
       "Vorhersage nicht möglich: Eingaben enthalten unbekannte Werte."
