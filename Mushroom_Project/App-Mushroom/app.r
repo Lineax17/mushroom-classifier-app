@@ -84,13 +84,13 @@ ui <- fluidPage(
   tags$head(
     tags$style(HTML("
       .sidebar {
-        font-size: 12px;  /* Verkleinere die Schriftgröße */
+        font-size: 12px;
       }
       .selectize-input, .selectize-dropdown, .dropdown-menu, .bootstrap-select {
-        font-size: 15px;  /* Verkleinere Schriftgröße in Dropdowns */
+        font-size: 15px;
       }
       .form-group {
-        margin-bottom: 5px;  /* Verkleinere Abstände zwischen Eingaben */
+        margin-bottom: 5px;
       }
     "))
   ),
@@ -107,7 +107,7 @@ ui <- fluidPage(
 
       # Eine Überschrift mit Linie darunter
       fluidRow(
-        column(6,h4("Pilz Merkmale auswählen:", align = "left")),
+        column(6,h4("Select mushroom characteristics:", align = "left")),
                column(6,tags$img(src = "images/mushroom_overview.png", alt = "Test Image", style = "width:200px; height:200px;")),
       ),
       hr(style = "height: 1px; background: black"),
@@ -464,9 +464,9 @@ server <- function(input, output, session) {
       geom_bar(stat = "identity", width = 0.5) +
       coord_flip() +
       scale_x_discrete(expand = c(0, 0)) +
-      scale_y_continuous(limits = c(0, 100), name = "Giftigkeitsprozentsatz") +  # Globale y-Achsenbeschriftung
+      scale_y_continuous(limits = c(0, 100), name = "Toxicity Percentage") +  # Globale y-Achsenbeschriftung
       labs(
-        title = "Giftigkeitsanalyse für Eigenschaften",
+        title = "Toxicity analysis for properties",
       ) +
       theme_minimal() +
       theme(
@@ -508,16 +508,16 @@ server <- function(input, output, session) {
       output$prediction <- renderUI({
         # Beispielvorhersage (ersetze durch dein Modell)
         prediction <- ifelse(input$cap_shape == "b" && input$cap_surface == "f", "e", "p")
-        text <- ifelse(prediction == "e", "Essbar", "Giftig")
+        text <- ifelse(prediction == "e", "Edible", "Poisonous")
         color <- ifelse(prediction == "e", "green", "red")
 
         # Dynamische Ausgabe
         HTML(paste0('<h4 style="color:', color, '; font-size: 20px; font-weight: bold; text-align: center;">',
-                    "Der Pilz ist: ", text, '</h4>'))
+                    "The Mushroom is: ", text, '</h4>'))
       })
     }, error = function(e) {
       # Fehler abfangen und Meldung ausgeben
-      "Vorhersage nicht möglich: Eingaben enthalten unbekannte Werte."
+      "Prediction not possible: Inputs contain unknown values."
     })
   })
 
