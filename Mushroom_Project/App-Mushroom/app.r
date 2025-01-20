@@ -106,8 +106,10 @@ ui <- fluidPage(
       # #region SidePanel
 
       # Eine Überschrift mit Linie darunter
-      h4("Pilz Merkmale auswählen:", align = "left"),
-      tags$img(src = "mushroom_overview.png", alt = "Test Image", style = "width:20px; height:20px;"),
+      fluidRow(
+        column(6,h4("Pilz Merkmale auswählen:", align = "left")),
+               column(6,tags$img(src = "images/mushroom_overview.png", alt = "Test Image", style = "width:200px; height:200px;")),
+      ),
       hr(style = "height: 1px; background: black"),
 
       fluidRow(
