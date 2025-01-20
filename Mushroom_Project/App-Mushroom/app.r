@@ -252,21 +252,6 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
-  observeEvent(input$cap_shape, {
-    #Warted auf auswahl von cap_shape
-    req(input$cap_shape)
-
-    # Filtere cap_surface-Choices basierend auf cap_shape
-    filtered_surfaces <- unique(data$cap_surface[data$cap_shape == input$cap_shape])
-
-    # Mappe Namen zu Werten
-    mapped_surfaces <- cap_surface_choices[cap_surface_choices %in% filtered_surfaces]
-    # Update der möglichen Auswahl
-    updateSelectInput(session, "cap_surface",
-                      choices = mapped_surfaces,
-                      selected = mapped_surfaces[1])
-  })
-
   #Bar diagram (single Values)
   output$BarPlot <- renderPlot({
 
@@ -459,7 +444,7 @@ server <- function(input, output, session) {
 
 
     ggplot(plot_data, aes(x = category, y = poisonous_percent, fill = category)) +
-      geom_bar(stat = "identity", width = 0.2) +
+      geom_bar(stat = "identity", width = 0.5) +
       coord_flip() +
       scale_x_discrete(expand = c(0, 0)) +
       scale_y_continuous(limits = c(0, 100), name = "Giftigkeitsprozentsatz") +  # Globale y-Achsenbeschriftung
@@ -517,6 +502,199 @@ server <- function(input, output, session) {
       # Fehler abfangen und Meldung ausgeben
       "Vorhersage nicht möglich: Eingaben enthalten unbekannte Werte."
     })
+  })
+
+  observeEvent(input$cap_shape, {
+    #Warted auf auswahl von cap_shape
+    req(input$cap_shape)
+    # Filtere cap_surface-Choices basierend auf cap_shape
+    filtered_data <- unique(data$cap_surface[data$cap_shape == input$cap_shape])
+    # Mappe Namen zu Werten
+    mapped_data <- cap_surface_choices[cap_surface_choices %in% filtered_data]
+    # Update der möglichen Auswahl
+    updateSelectInput(session, "cap_surface",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$cap_surface, {
+    req(input$cap_surface)
+    filtered_data <- unique(data$cap_color[data$cap_surface == input$cap_surface])
+    mapped_data <- cap_color_choices[cap_color_choices %in% filtered_data]
+    updateSelectInput(session, "cap_color",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$cap_color, {
+    req(input$cap_color)
+    filtered_data <- unique(data$bruises[data$cap_color == input$cap_color])
+    mapped_data <- bruises_choices[bruises_choices %in% filtered_data]
+    updateSelectInput(session, "bruises",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$bruises, {
+    req(input$bruises)
+    filtered_data <- unique(data$odor[data$bruises == input$bruises])
+    mapped_data <- odor_choices[odor_choices %in% filtered_data]
+    updateSelectInput(session, "odor",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$odor, {
+    req(input$odor)
+    filtered_data <- unique(data$gill_attachment[data$odor == input$odor])
+    mapped_data <- gill_attachment_choices[gill_attachment_choices %in% filtered_data]
+    updateSelectInput(session, "gill_attachment",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$gill_attachment, {
+    req(input$gill_attachment)
+    filtered_data <- unique(data$gill_spacing[data$gill_attachment == input$gill_attachment])
+    mapped_data <- gill_spacing_choices[gill_spacing_choices %in% filtered_data]
+    updateSelectInput(session, "gill_spacing",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$gill_spacing, {
+    req(input$gill_spacing)
+    filtered_data <- unique(data$gill_size[data$gill_spacing == input$gill_spacing])
+    mapped_data <- gill_size_choices[gill_size_choices %in% filtered_data]
+    updateSelectInput(session, "gill_size",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$gill_spacing, {
+    req(input$gill_spacing)
+    filtered_data <- unique(data$gill_size[data$gill_spacing == input$gill_spacing])
+    mapped_data <- gill_size_choices[gill_size_choices %in% filtered_data]
+    updateSelectInput(session, "gill_size",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$gill_size, {
+    req(input$gill_size)
+    filtered_data <- unique(data$gill_color[data$gill_size == input$gill_size])
+    mapped_data <- gill_color_choices[gill_color_choices %in% filtered_data]
+    updateSelectInput(session, "gill_color",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$gill_color, {
+    req(input$gill_color)
+    filtered_data <- unique(data$stalk_shape[data$gill_color == input$gill_color])
+    mapped_data <- stalk_shape_choices[stalk_shape_choices %in% filtered_data]
+    updateSelectInput(session, "stalk_shape",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$stalk_shape, {
+    req(input$stalk_shape)
+    filtered_data <- unique(data$stalk_surface_above_ring[data$stalk_shape == input$stalk_shape])
+    mapped_data <- stalk_surface_above_ring_choices[stalk_surface_above_ring_choices %in% filtered_data]
+    updateSelectInput(session, "stalk_surface_above_ring",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$stalk_surface_above_ring, {
+    req(input$stalk_surface_above_ring)
+    filtered_data <- unique(data$stalk_surface_below_ring[data$stalk_surface_above_ring == input$stalk_surface_above_ring])
+    mapped_data <- stalk_surface_below_ring_choices[stalk_surface_below_ring_choices %in% filtered_data]
+    updateSelectInput(session, "stalk_surface_below_ring",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$stalk_surface_below_ring, {
+    req(input$stalk_surface_below_ring)
+    filtered_data <- unique(data$stalk_color_above_ring[data$stalk_surface_below_ring == input$stalk_surface_below_ring])
+    mapped_data <- stalk_color_above_ring_choices[stalk_color_above_ring_choices %in% filtered_data]
+    updateSelectInput(session, "stalk_color_above_ring",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$stalk_color_above_ring, {
+    req(input$stalk_color_above_ring)
+    filtered_data <- unique(data$stalk_color_below_ring[data$stalk_color_above_ring == input$stalk_color_above_ring])
+    mapped_data <- stalk_color_below_ring_choices[stalk_color_below_ring_choices %in% filtered_data]
+    updateSelectInput(session, "stalk_color_below_ring",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$stalk_color_below_ring, {
+    req(input$stalk_color_below_ring)
+    filtered_data <- unique(data$veil_type[data$stalk_color_below_ring == input$stalk_color_below_ring])
+    mapped_data <- veil_type_choices[veil_type_choices %in% filtered_data]
+    updateSelectInput(session, "veil_type",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$veil_type, {
+    req(input$veil_type)
+    filtered_data <- unique(data$veil_color[data$veil_type == input$veil_type])
+    mapped_data <- veil_color_choices[veil_color_choices %in% filtered_data]
+    updateSelectInput(session, "veil_color",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$veil_color, {
+    req(input$veil_color)
+    filtered_data <- unique(data$ring_number[data$veil_color == input$veil_color])
+    mapped_data <- ring_number_choices[ring_number_choices %in% filtered_data]
+    updateSelectInput(session, "ring_number",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$ring_number, {
+    req(input$ring_number)
+    filtered_data <- unique(data$ring_type[data$ring_number == input$ring_number])
+    mapped_data <- ring_type_choices[ring_type_choices %in% filtered_data]
+    updateSelectInput(session, "ring_type",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$ring_type, {
+    req(input$ring_type)
+    filtered_data <- unique(data$spore_print_color[data$ring_type == input$ring_type])
+    mapped_data <- spore_print_color_choices[spore_print_color_choices %in% filtered_data]
+    updateSelectInput(session, "spore_print_color",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$spore_print_color, {
+    req(input$spore_print_color)
+    filtered_data <- unique(data$population[data$spore_print_color == input$spore_print_color])
+    mapped_data <- population_choices[population_choices %in% filtered_data]
+    updateSelectInput(session, "population",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
+  })
+
+  observeEvent(input$population, {
+    req(input$population)
+    filtered_data <- unique(data$habitat[data$population == input$population])
+    mapped_data <- habitat_choices[habitat_choices %in% filtered_data]
+    updateSelectInput(session, "habitat",
+                      choices = mapped_data,
+                      selected = mapped_data[1])
   })
 
 }
