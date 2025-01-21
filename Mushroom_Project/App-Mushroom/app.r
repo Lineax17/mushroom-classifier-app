@@ -104,10 +104,7 @@ ui <- fluidPage(
       # #region SidePanel
 
       # Eine Überschrift mit Linie darunter
-      fluidRow(
-        column(6,h4("Select mushroom characteristics:", align = "left")),
-               column(6,tags$img(src = "images/mushroom_overview.png", alt = "Test Image", style = "width:200px; height:200px;")),
-      ),
+      h4("Select mushroom characteristics:", align = "left"),
       hr(style = "height: 1px; background: black"),
 
       fluidRow(
@@ -251,7 +248,9 @@ ui <- fluidPage(
     mainPanel(
       #plotOutput(outputId = "BarPlot"),
       htmlOutput("prediction"),
-      plotOutput(outputId = "BarPlot", height = 20 * 21)
+      plotOutput(outputId = "BarPlot", height = 20 * 21),
+      hr(style = "height: 1px; background: black"),
+      tags$img(src = "images/mushroom_overview.png", alt = "Test Image", style = "width:250px; height:250px;")
     )
   )
 )
