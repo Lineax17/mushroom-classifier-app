@@ -212,7 +212,7 @@ ui <- fluidPage(
         # ring-number
         column(6,
                selectInput(inputId = "ring_number", label = "Ring Number:",
-                           choices = ring_number_choices, selected = "n"
+                           choices = ring_number_choices, selected = "o"
                )),
 
         # ring-type
