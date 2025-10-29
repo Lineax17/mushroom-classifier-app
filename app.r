@@ -1,4 +1,6 @@
-#Choices
+# ==============================================================================
+# Choices - Define all input options for mushroom characteristics
+# ==============================================================================
 #region Choices
 cap_shape_choices <- c("Bell" = "b", "Conical" = "c", "Convex" = "x",
                        "Flat" = "f", "Knobbed" = "k", "Sunken" = "s")
@@ -76,8 +78,9 @@ habitat_choices <- c("Grasses" = "g", "Leaves" = "l", "Meadows" = "m", "Paths" =
                      "Urban" = "u", "Waste" = "w", "Woods" = "d")
 #endregion
 
-################
-# Im folgenden Abschnitt wird das User Interface (UI) definiert
+# ==============================================================================
+# User Interface (UI) Definition
+# ==============================================================================
 ui <- fluidPage(
   tags$head(
     tags$style(HTML("
@@ -92,18 +95,17 @@ ui <- fluidPage(
       }
     "))
   ),
-  # Titel der App
+  # Application title
   titlePanel("Mushroom"),
 
-  # Layout für die Eingaben in die App und die Ausgaben
+  # Layout for input fields and output displays
   sidebarLayout(
 
-    # Die Definition der Eingabefelder auf der linken Seite
+    # Sidebar panel with input fields
     sidebarPanel(
-      #SidePanel
       # #region SidePanel
 
-      # Eine Überschrift mit Linie darunter
+      # Heading with horizontal line separator
       h4("Select mushroom characteristics:", align = "left"),
       hr(style = "height: 1px; background: black"),
 
@@ -244,7 +246,7 @@ ui <- fluidPage(
 
     ),
 
-    # der Hauptbereich der Nutzeroberfläche für die Ausgabe der Ergebnisse
+    # Main panel for displaying results
     mainPanel(
       #plotOutput(outputId = "BarPlot"),
       htmlOutput("prediction"),
@@ -255,16 +257,16 @@ ui <- fluidPage(
   )
 )
 
-############
-
-
+# ==============================================================================
+# Server Logic
+# ==============================================================================
 server <- function(input, output, session) {
 
-  #Bar diagram (single Values)
+  # Bar diagram showing toxicity percentage for individual characteristics
   output$BarPlot <- renderPlot({
 
-    # Eingeschaften Filtern
-    #region Eingeschaften Filtern
+    # Filter characteristics
+    #region Filter characteristics
     # cap_shape
     cap_shape_data <- data %>%
       filter(cap_shape == input$cap_shape) %>%
@@ -433,7 +435,7 @@ server <- function(input, output, session) {
       )
     #endregion
 
-    # data fürs Plotten. Für richtige Reihenfolge umdrehen, und dann die Kategorie as Faktor setzen
+    # Prepare data for plotting: reverse order and set category as factor
     plot_data <- bind_rows(cap_shape_data, cap_surface_data, cap_color_data, bruises_data, odor_data,
                            gill_attachment_data, gill_spacing_data, gill_size_data, gill_color_data,
                            stalk_shape_data, stalk_surface_above_ring_data, stalk_surface_below_ring_data,
@@ -447,20 +449,20 @@ server <- function(input, output, session) {
       geom_bar(stat = "identity", width = 0.5) +
       coord_flip() +
       scale_x_discrete(expand = c(0, 0)) +
-      scale_y_continuous(limits = c(0, 100), name = "Toxicity Percentage") +  # Globale y-Achsenbeschriftung
+      scale_y_continuous(limits = c(0, 100), name = "Toxicity Percentage") +
       labs(
         title = "Toxicity analysis for properties",
       ) +
       theme_minimal() +
       theme(
-        axis.text.y = element_text(size = 10),      # Lesbare Kategorienamen
-        plot.title = element_text(hjust = 0.5),    # Zentriere den Titel
-        legend.position = "none"                   # Entferne die Legende
+        axis.text.y = element_text(size = 10),      # Readable category names
+        plot.title = element_text(hjust = 0.5),     # Center the title
+        legend.position = "none"                    # Remove the legend
       )
   })
 
   output$prediction <- renderPrint({
-    # Eingaben des Benutzers in ein DataFrame umwandeln
+    # Convert user inputs into a data frame
     user_input <- data.frame(
       cap_shape = input$cap_shape,
       cap_surface = input$cap_surface,
@@ -484,33 +486,33 @@ server <- function(input, output, session) {
       habitat = input$habitat
     )
 
-    # Vorhersage basierend auf Benutzereingaben
+    # Prediction based on user inputs
     tryCatch({
-      # Prediction durchführen
+      # Perform prediction
       output$prediction <- renderUI({
-        # Beispielvorhersage (ersetze durch dein Modell)
+        # Example prediction (replace with your model)
         prediction <- ifelse(input$cap_shape == "b" && input$cap_surface == "f", "e", "p")
         text <- ifelse(prediction == "e", "Edible", "Poisonous")
         color <- ifelse(prediction == "e", "green", "red")
 
-        # Dynamische Ausgabe
+        # Dynamic output
         HTML(paste0('<h4 style="color:', color, '; font-size: 20px; font-weight: bold; text-align: center;">',
                     "The Mushroom is: ", text, '</h4>'))
       })
     }, error = function(e) {
-      # Fehler abfangen und Meldung ausgeben
+      # Catch errors and display message
       "Prediction not possible: Inputs contain unknown values."
     })
   })
 
   observeEvent(input$cap_shape, {
-    #Warted auf auswahl von cap_shape
+    # Wait for cap_shape selection
     req(input$cap_shape)
-    # Filtere cap_surface-Choices basierend auf cap_shape
+    # Filter cap_surface choices based on cap_shape
     filtered_data <- unique(data$cap_surface[data$cap_shape == input$cap_shape])
-    # Mappe Namen zu Werten
+    # Map names to values
     mapped_data <- cap_surface_choices[cap_surface_choices %in% filtered_data]
-    # Update der möglichen Auswahl
+    # Update available choices
     updateSelectInput(session, "cap_surface",
                       choices = mapped_data,
                       selected = mapped_data[1])
@@ -680,13 +682,11 @@ server <- function(input, output, session) {
 
 }
 
-
-# Aufruf der App-Funktionen
-###############
-
+# ==============================================================================
+# Run the Shiny Application
+# ==============================================================================
 shinyApp(ui = ui, server = server)
 
-###############
 
 
 
