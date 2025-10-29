@@ -1,21 +1,6 @@
-# ==============================================================================
-# Load Required Libraries
-# ==============================================================================
-library(shiny)
-library(ggplot2)
-library(dplyr)
-library(shinyWidgets)
 
-# ==============================================================================
-# Load Data
-# ==============================================================================
-data <- read.csv("data/agaricus-lepiota.csv", header = TRUE, sep = ";", fill = TRUE, stringsAsFactors = TRUE)
-data[] <- lapply(data, as.factor)
-
-# ==============================================================================
-# Choices - Define all input options for mushroom characteristics
-# ==============================================================================
-#region Choices
+# Choices
+# region Choices
 cap_shape_choices <- c("Bell" = "b", "Conical" = "c", "Convex" = "x",
                        "Flat" = "f", "Knobbed" = "k", "Sunken" = "s")
 
@@ -90,16 +75,8 @@ population_choices <- c("Abundant" = "a", "Clustered" = "c", "Numerous" = "n",
 
 habitat_choices <- c("Grasses" = "g", "Leaves" = "l", "Meadows" = "m", "Paths" = "p",
                      "Urban" = "u", "Waste" = "w", "Woods" = "d")
-#endregion
 
-# ==============================================================================
-# Add Resource Path for Images
-# ==============================================================================
-addResourcePath("images", "images")
-
-# ==============================================================================
-# User Interface (UI) Definition
-# ==============================================================================
+# The following section defines the User Interface (UI)
 ui <- fluidPage(
   tags$head(
     tags$style(HTML("
@@ -114,17 +91,18 @@ ui <- fluidPage(
       }
     "))
   ),
-  # Application title
+  # Title of the app
   titlePanel("Mushroom"),
 
-  # Layout for input fields and output displays
+  # Layout for the inputs to the app and the outputs
   sidebarLayout(
 
-    # Sidebar panel with input fields
+    # The definition of the input fields on the left side
     sidebarPanel(
-      # #region SidePanel
+      # SidePanel
+      # region SidePanel
 
-      # Heading with horizontal line separator
+      # A heading with a line below
       h4("Select mushroom characteristics:", align = "left"),
       hr(style = "height: 1px; background: black"),
 
@@ -261,31 +239,31 @@ ui <- fluidPage(
                            choices = habitat_choices, selected = "d"
                )),
       ),
-      #endregion
+      # endregion
 
     ),
 
-    # Main panel for displaying results
+    # The main area of the user interface for displaying the results
     mainPanel(
-      #plotOutput(outputId = "BarPlot"),
+      # plotOutput(outputId = "BarPlot"),
       htmlOutput("prediction"),
       plotOutput(outputId = "BarPlot", height = 20 * 21),
       hr(style = "height: 1px; background: black"),
-      tags$img(src = "images/mushroom_overview.png", alt = "Test Image", style = "width:250px; height:250px;")
+      tags$img(src = "../images/mushroom_overview.png", alt = "Test Image", style = "width:250px; height:250px;")
     )
   )
 )
 
-# ==============================================================================
-# Server Logic
-# ==============================================================================
+############
+
+
 server <- function(input, output, session) {
 
-  # Bar diagram showing toxicity percentage for individual characteristics
+  # Bar diagram (single values)
   output$BarPlot <- renderPlot({
 
-    # Filter characteristics
-    #region Filter characteristics
+    # Filter properties
+
     # cap_shape
     cap_shape_data <- data %>%
       filter(cap_shape == input$cap_shape) %>%
@@ -452,9 +430,9 @@ server <- function(input, output, session) {
         poisonous_percent = sum(edible == "p") / n() * 100,
         category = paste("Habitat:", names(habitat_choices[habitat_choices == input$habitat]))
       )
-    #endregion
+    # endregion
 
-    # Prepare data for plotting: reverse order and set category as factor
+    # Data for plotting. Reverse for correct order, then set the category as factor
     plot_data <- bind_rows(cap_shape_data, cap_surface_data, cap_color_data, bruises_data, odor_data,
                            gill_attachment_data, gill_spacing_data, gill_size_data, gill_color_data,
                            stalk_shape_data, stalk_surface_above_ring_data, stalk_surface_below_ring_data,
@@ -468,7 +446,7 @@ server <- function(input, output, session) {
       geom_bar(stat = "identity", width = 0.5) +
       coord_flip() +
       scale_x_discrete(expand = c(0, 0)) +
-      scale_y_continuous(limits = c(0, 100), name = "Toxicity Percentage") +
+      scale_y_continuous(limits = c(0, 100), name = "Toxicity Percentage") +  # Global y-axis label
       labs(
         title = "Toxicity analysis for properties",
       ) +
@@ -481,7 +459,7 @@ server <- function(input, output, session) {
   })
 
   output$prediction <- renderPrint({
-    # Convert user inputs into a data frame
+    # Convert user inputs into a DataFrame
     user_input <- data.frame(
       cap_shape = input$cap_shape,
       cap_surface = input$cap_surface,
@@ -519,19 +497,19 @@ server <- function(input, output, session) {
                     "The Mushroom is: ", text, '</h4>'))
       })
     }, error = function(e) {
-      # Catch errors and display message
+      # Catch errors and output message
       "Prediction not possible: Inputs contain unknown values."
     })
   })
 
   observeEvent(input$cap_shape, {
-    # Wait for cap_shape selection
+    # Wait for selection of cap_shape
     req(input$cap_shape)
     # Filter cap_surface choices based on cap_shape
     filtered_data <- unique(data$cap_surface[data$cap_shape == input$cap_shape])
     # Map names to values
     mapped_data <- cap_surface_choices[cap_surface_choices %in% filtered_data]
-    # Update available choices
+    # Update the possible selection
     updateSelectInput(session, "cap_surface",
                       choices = mapped_data,
                       selected = mapped_data[1])
@@ -701,14 +679,10 @@ server <- function(input, output, session) {
 
 }
 
-# ==============================================================================
-# Run the Shiny Application
-# ==============================================================================
+
+# Call the app
+###############
+
 shinyApp(ui = ui, server = server)
 
-
-
-
-
-
-
+###############

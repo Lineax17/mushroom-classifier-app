@@ -3,14 +3,14 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(shinyWidgets)
-library(lattice) # Dependency for caret
-library(caret) # For simple data partitioning
+library(lattice)
+library(caret)
 library(rpart)
-library(rpart.plot)  # For decision tree visualization
+library(rpart.plot)
 
 
-# Load the data
-data <- read.csv("data/agaricus-lepiota.csv", header=TRUE, sep=";", fill=TRUE, stringsAsFactors=TRUE)
+# Read the data
+data <- read.csv("./data/agaricus-lepiota.csv", header = TRUE, sep = ";", fill = TRUE, stringsAsFactors = TRUE)
 data[] <- lapply(data, as.factor)
 
 # Split into training and test data (80% training, 20% test)
@@ -19,7 +19,7 @@ train_data <- data[train_index, ]
 test_data <- data[-train_index, ]
 
 # Create decision tree
-set.seed(42)  # Random numbers always from the same starting point (ensure reproducibility)
+set.seed(467)
 decision_tree <- rpart(edible ~ ., data = train_data, method = "class", control = rpart.control(cp = 0.0001, minsplit = 5))
 
 # Save the decision tree as PDF
@@ -36,5 +36,4 @@ print(confusion_matrix)
 
 # Start the Shiny app
 options(shiny.port = 8100)
-runApp(".")
-
+runApp("app")
