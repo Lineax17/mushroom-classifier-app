@@ -1,6 +1,6 @@
 # Mushroom Classifier
 
-This project contains a dataset with mushroom data and an interactive Shiny app to classify and analyze mushroom characteristics.
+This project contains a dataset with mushroom data and an interactive Shiny app to classify and predict mushroom poisoness according to its appearance.
 
 <img width="2545" height="1189" alt="image" src="https://github.com/user-attachments/assets/3187d653-e00d-47b1-ac21-ea1df580e40d" />
 
