@@ -1,4 +1,18 @@
 # ==============================================================================
+# Load Required Libraries
+# ==============================================================================
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(shinyWidgets)
+
+# ==============================================================================
+# Load Data
+# ==============================================================================
+data <- read.csv("data/agaricus-lepiota.csv", header = TRUE, sep = ";", fill = TRUE, stringsAsFactors = TRUE)
+data[] <- lapply(data, as.factor)
+
+# ==============================================================================
 # Choices - Define all input options for mushroom characteristics
 # ==============================================================================
 #region Choices
@@ -77,6 +91,11 @@ population_choices <- c("Abundant" = "a", "Clustered" = "c", "Numerous" = "n",
 habitat_choices <- c("Grasses" = "g", "Leaves" = "l", "Meadows" = "m", "Paths" = "p",
                      "Urban" = "u", "Waste" = "w", "Woods" = "d")
 #endregion
+
+# ==============================================================================
+# Add Resource Path for Images
+# ==============================================================================
+addResourcePath("images", "images")
 
 # ==============================================================================
 # User Interface (UI) Definition

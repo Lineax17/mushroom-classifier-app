@@ -36,5 +36,5 @@ print(confusion_matrix)
 
 # Start the Shiny app
 options(shiny.port = 8100)
-runApp("App-Mushroom")
+runApp(".")
 
