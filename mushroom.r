@@ -10,7 +10,7 @@ library(rpart.plot)  # Für die Visualisierung des Baums
 
 
 # Einlesen der data
-data <- read.csv("./agaricus-lepiota.csv",header=TRUE,sep=";",fill=TRUE,stringsAsFactors=TRUE)
+data <- read.csv("data/agaricus-lepiota.csv", header=TRUE, sep=";", fill=TRUE, stringsAsFactors=TRUE)
 data[] <- lapply(data, as.factor)
 
 # Aufteilen in Trainings- und Testdata (80% Training, 20% Test)
